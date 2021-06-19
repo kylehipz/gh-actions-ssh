@@ -1,0 +1,16 @@
+name: Test SSH Connection
+on: [push]
+
+jobs:
+  ssh_test:
+    name: Test SSH
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute remote ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: whoami
